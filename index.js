@@ -29,13 +29,22 @@ app.get('/',(req, res, next)=>{
     res.send({success : true})
 })
 
-app.get('/product',(req,res,next)=>{
-    getProduct(db).then(product =>{
-        console.log('Product Result', product)
-        res.render('product')
-    }).catch (error => {
-        console.error(error)
-    })
+app.get('/product', async (req,res,next)=>{
+    // getProduct(db).then(product =>{
+    //     console.log('Product Result', product)
+    //     res.render('product')
+    // }).catch (error => {
+    //     console.error(error)
+    // })
+
+    let product
+    try {
+        product=await getProduct(db)
+    } catch (error){
+        return next(error)
+    }
+    console.log('Product Result', product)
+    res.render('product')    
 })
 
 //handle form GET Method
