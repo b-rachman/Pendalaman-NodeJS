@@ -37,14 +37,13 @@ app.get('/product', async (req,res,next)=>{
     //     console.error(error)
     // })
 
-    let product
+    let products
     try {
-        product=await getProduct(db)
+        products = await getProduct(db)
     } catch (error){
         return next(error)
     }
-    console.log('Product Result', product)
-    res.render('product')    
+    res.render('product', { products })    
 })
 
 //handle form GET Method
