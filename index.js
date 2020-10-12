@@ -26,6 +26,11 @@ app.get('/product',(req,res,next)=>{
     res.render('product')
 })
 
+//handle form GET Method
+app.get('/add-product',(req,res,next)=>{
+    res.send(req.query)
+})
+
 app.use((err, req, res, next)=>{
     res.send(err.message)
 })
